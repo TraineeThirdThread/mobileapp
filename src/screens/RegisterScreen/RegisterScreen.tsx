@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Input, Text } from '@ui-kitten/components';
 import { Button, Switch } from 'react-native';
 import { StyledContainer, StyledRowContainer } from './RegisterScreen.styles';
@@ -6,7 +6,7 @@ import { EColors } from '../../shared/ENUMS/colors';
 import useRegisterStore from '../../app/stores/useRegisterStore';
 import { AppIcon } from '../../shared/ui/icons';
 import { useRootNavigation } from '../../shared/hooks/useTypedNavigation';
-import { PasswordInput } from '../../shared/components/PasswordInput/PasswordInput';
+import { CustomInput } from '../../shared/components/CustomInput/CustomInput';
 import { registerFormValidation } from '../../shared/utils/registerFormValidation';
 
 export function RegisterScreen() {
@@ -49,21 +49,23 @@ export function RegisterScreen() {
                 onChangeText={setEmail}
                 label="E-Mail"
             />
-            <PasswordInput
+            <CustomInput
                 placeholder="Put your password"
                 value={pass}
                 label="Password"
                 caption={status.passCaption}
                 status={status.passStatus}
                 onChangeText={setPass}
+                isPassword={true}
             />
-            <PasswordInput
+            <CustomInput
                 placeholder="Put your password again"
                 value={pass2}
                 label="Password"
                 caption={status.passCaption}
                 status={status.passStatus}
                 onChangeText={setPass2}
+                isPassword={true}
             />
             <StyledRowContainer>
                 <Text>Register as seller?  </Text>

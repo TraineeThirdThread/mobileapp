@@ -14,11 +14,11 @@ const useRegisterStore = create((set) => ({
         passCaption: '',
         formIsValid: false,
     },
-    setLogin: (login: string) => set((state) =>({login: login})),
-    setEmail:(email: string) => set((state) =>({email: email})),
-    setPass: (pass: string) => set((state) =>({pass: pass})),
-    setPass2: (pass2: string) => set((state) =>({pass2: pass2})),
-    setStatus: (status) => set((state) => ({status: status})),
+    setLogin: (login: string) => set(({login})),
+    setEmail:(email: string) => set(({email})),
+    setPass: (pass: string) => set(({pass})),
+    setPass2: (pass2: string) => set(({pass2})),
+    setStatus: (status) => set(({status})),
 }));
 
 export default useRegisterStore;

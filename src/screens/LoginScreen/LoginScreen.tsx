@@ -8,13 +8,14 @@ import { EScreens } from '../../shared/ENUMS/screens';
 import useLoginStore from '../../app/stores/useLoginStore';
 import { AppIcon } from '../../shared/ui/icons';
 import { useRootNavigation } from '../../shared/hooks/useTypedNavigation';
+import { CustomInput } from '../../shared/components/CustomInput/CustomInput';
 
 export function LoginScreen() {
     const navigation = useRootNavigation();
 
     const { login, pass, setLogin, setPass } = useLoginStore();
 
-    function handleSignUp() {
+    const handleSignUp = () => {
         navigation.navigate(EScreens.register);
     }
 
@@ -37,11 +38,12 @@ export function LoginScreen() {
                 onChangeText={setLogin}
                 label="Login or E-Mail"
             />
-            <Input
+            <CustomInput
                 placeholder="Put your password"
                 value={pass}
                 label="Password"
                 onChangeText={setPass}
+                isPassword={true}
             />
             <Button color={EColors.red} title="Sign in" onPress={handleLogin} />
             <StyledRowContainer>
