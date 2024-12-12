@@ -6,13 +6,13 @@ interface ICustomInputProps {
     placeholder?: string,
     value?: string, label: string,
     caption?: string,
-    status?: string ,
+    status?: string,
     onChangeText?: (arg0: string) => void,
     isPassword?: boolean,
 }
 
-export function CustomInput(props:ICustomInputProps) {
-    const { placeholder, value, label, caption, status, onChangeText, isPassword } = props;
+export function CustomInput(customProps: ICustomInputProps) {
+    const { placeholder, value, label, caption, status, onChangeText, isPassword } = customProps;
 
     const [secureTextEntry, setSecureTextEntry] = useState(true);
 
