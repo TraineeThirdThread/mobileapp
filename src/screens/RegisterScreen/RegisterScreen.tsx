@@ -78,7 +78,7 @@ export function RegisterScreen() {
     }
 
     const renderIcon = (props): React.ReactElement => (
-        <TouchableWithoutFeedback onPress={() => setSecureTextEntry(!secureTextEntry)}>
+        <TouchableWithoutFeedback onPress={setSecureTextEntry}>
             <Icon
                 {...props}
                 name={secureTextEntry ? 'eye-off' : 'eye'}
