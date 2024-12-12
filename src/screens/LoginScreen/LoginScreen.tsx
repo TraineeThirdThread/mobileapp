@@ -1,44 +1,31 @@
 import React from 'react';
 import validator from 'validator';
-import { Icon, Input, Text } from '@ui-kitten/components';
-import { TouchableWithoutFeedback, Button } from 'react-native';
+import { Input, Text } from '@ui-kitten/components';
+import { Button } from 'react-native';
 import { StyledContainer, StyledRowContainer } from './loginScreen.styles';
 import { EColors } from '../../shared/ENUMS/colors';
 import { EScreens } from '../../shared/ENUMS/screens';
 import useLoginStore from '../../app/stores/useLoginStore';
-import { AppIcon } from '../../shared/ui/AppIcon';
+import { AppIcon } from '../../shared/ui/icons';
 import { useRootNavigation } from '../../shared/hooks/useTypedNavigation';
 
 export function LoginScreen() {
     const navigation = useRootNavigation();
 
-    const login = useLoginStore((state) => state.login);
-    const pass = useLoginStore((state) => state.pass);
-    const secureTextEntry = useLoginStore((state) => state.secureTextEntry);
-    const setLogin = useLoginStore((state) => state.setLogin);
-    const setPass = useLoginStore((state) => state.setPass);
-    const setSecureTextEntry = useLoginStore((state) => state.setSecureTextEntry);
+    const { login, pass, setLogin, setPass } = useLoginStore();
 
     function handleSignUp() {
         navigation.navigate(EScreens.register);
     }
 
-    function handleLogin() {
+    const handleLogin = () => {
         if (validator.isEmail(login)) {
             console.log({ email: login, pass });
         } else {
             console.log({ login, pass });
         }
-    }
+    };
 
-    const renderIcon = (props): React.ReactElement => (
-        <TouchableWithoutFeedback onPress={setSecureTextEntry}>
-            <Icon
-                {...props}
-                name={secureTextEntry ? 'eye-off' : 'eye'}
-            />
-        </TouchableWithoutFeedback>
-    );
 
     return (
         <StyledContainer>
@@ -54,8 +41,6 @@ export function LoginScreen() {
                 placeholder="Put your password"
                 value={pass}
                 label="Password"
-                accessoryRight={renderIcon}
-                secureTextEntry={secureTextEntry}
                 onChangeText={setPass}
             />
             <Button color={EColors.red} title="Sign in" onPress={handleLogin} />

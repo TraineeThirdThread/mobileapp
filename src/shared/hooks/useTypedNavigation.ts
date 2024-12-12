@@ -3,7 +3,7 @@ import {
   HomeStackParamList,
   BottomTabsParamList,
   RootStackParamList,
-} from '../types/types';
+} from '../types/navigationTypes';
 import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import { StackNavigationProp } from '@react-navigation/stack';
 

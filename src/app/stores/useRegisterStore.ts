@@ -5,12 +5,20 @@ const useRegisterStore = create((set) => ({
     email: '',
     pass: '',
     pass2:'',
-    secureTextEntry: true,
+    status:{
+        loginStatus: 'basic',
+        emailStatus: 'basic',
+        passStatus: 'basic',
+        loginCaption: '',
+        emailCaption: '',
+        passCaption: '',
+        formIsValid: false,
+    },
     setLogin: (login: string) => set((state) =>({login: login})),
     setEmail:(email: string) => set((state) =>({email: email})),
-    setPass: (pass: string) => set((state) =>({pass: pass})),    
+    setPass: (pass: string) => set((state) =>({pass: pass})),
     setPass2: (pass2: string) => set((state) =>({pass2: pass2})),
-    setSecureTextEntry: () => set((state) => ({secureTextEntry: !state.secureTextEntry})),
+    setStatus: (status) => set((state) => ({status: status})),
 }));
 
 export default useRegisterStore;
