@@ -6,6 +6,7 @@ import { TouchableWithoutFeedback, Button } from 'react-native';
 import { StyledContainer, StyledRowContainer } from './loginScreen.styles';
 import { EColors } from '../../shared/ENUMS/colors';
 import Svg, { Path } from 'react-native-svg';
+import { EScreens } from '../../shared/ENUMS/screens';
 
 
 export function LoginScreen() {
@@ -57,7 +58,7 @@ export function LoginScreen() {
             <Button color={EColors.red} title="Sign in" onPress={handleLogin} />
             <StyledRowContainer>
                 <Text>Don’t have an account?  </Text>
-                <Button color={EColors.red} title="Sign up" onPress={() => navigation.navigate('Register')} />
+                <Button color={EColors.red} title="Sign up" onPress={() => navigation.navigate(EScreens.register)} />
             </StyledRowContainer>
         </StyledContainer>
 
