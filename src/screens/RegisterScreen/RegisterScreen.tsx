@@ -1,21 +1,27 @@
 import React, { useState } from 'react';
-import { useNavigation } from '@react-navigation/native';
 import { Icon, Input, Text } from '@ui-kitten/components';
 import { TouchableWithoutFeedback, Button, Switch } from 'react-native';
 import { StyledContainer, StyledRowContainer } from './RegisterScreen.styles';
 import { EColors } from '../../shared/ENUMS/colors';
-import Svg, { Path } from 'react-native-svg';
 import validator from 'validator';
+import useRegisterStore from '../../app/stores/useRegisterStore';
+import { AppIcon } from '../../shared/ui/AppIcon';
+import { useRootNavigation } from '../../shared/hooks/useTypedNavigation';
 
 
 export function RegisterScreen() {
-    const navigation = useNavigation();
-    const [login, setLogin] = useState('');
-    const [email, setEmail] = useState('');
-    const [pass, setPass] = useState('');
-    const [pass2, setPass2] = useState('');
+    const navigation = useRootNavigation();
 
-    const [secureTextEntry, setSecureTextEntry] = useState(true);
+    const login = useRegisterStore((state) => state.login);
+    const email = useRegisterStore((state) => state.email);
+    const pass = useRegisterStore((state) => state.pass);
+    const pass2 = useRegisterStore((state) => state.pass2);
+    const secureTextEntry = useRegisterStore((state) => state.secureTextEntry);
+    const setLogin = useRegisterStore((state) => state.setLogin);
+    const setEmail = useRegisterStore((state) => state.setEmail);
+    const setPass = useRegisterStore((state) => state.setPass);
+    const setPass2 = useRegisterStore((state) => state.setPass2);
+    const setSecureTextEntry = useRegisterStore((state) => state.setSecureTextEntry);
 
     const [loginStatus, setLoginStatus] = useState('basic');
     const [emailStatus, setEmailStatus] = useState('basic');
@@ -67,6 +73,10 @@ export function RegisterScreen() {
         }
     };
 
+    function handleSignIn() {
+        navigation.goBack();
+    }
+
     const renderIcon = (props): React.ReactElement => (
         <TouchableWithoutFeedback onPress={() => setSecureTextEntry(!secureTextEntry)}>
             <Icon
@@ -78,17 +88,14 @@ export function RegisterScreen() {
 
     return (
         <StyledContainer>
-            <Svg width="25%" height="20%" viewBox="0 0 24 24" fill="none" >
-                <Path d="M3 6.29999V20.5C3 20.7652 3.10536 21.0196 3.29289 21.2071C3.48043 21.3946 3.73478 21.5 4 21.5H20C20.2652 21.5 20.5196 21.3946 20.7071 21.2071C20.8946 21.0196 21 20.7652 21 20.5V6.29999H3Z" stroke="black" stroke-width="1.5" stroke-linejoin="round" />
-                <Path d="M21 6.3L18.1665 2.5H5.8335L3 6.3M15.7775 9.6C15.7775 11.699 14.0865 13.4 12 13.4C9.9135 13.4 8.222 11.699 8.222 9.6" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-            </Svg>
+            <AppIcon />
             <Text category="h3">Sign up</Text>
             <Input
                 placeholder="Put your login"
                 value={login}
                 status={loginStatus}
                 caption={loginCaption}
-                onChangeText={nextValue => setLogin(nextValue)}
+                onChangeText={setLogin}
                 label="Login"
             />
             <Input
@@ -96,7 +103,7 @@ export function RegisterScreen() {
                 value={email}
                 status={emailStatus}
                 caption={emailCaption}
-                onChangeText={nextValue => setEmail(nextValue)}
+                onChangeText={setEmail}
                 label="E-Mail"
             />
             <Input
@@ -107,7 +114,7 @@ export function RegisterScreen() {
                 status={passStatus}
                 accessoryRight={renderIcon}
                 secureTextEntry={secureTextEntry}
-                onChangeText={nextValue => setPass(nextValue)}
+                onChangeText={setPass}
             />
             <Input
                 placeholder="Put your password again"
@@ -117,22 +124,22 @@ export function RegisterScreen() {
                 status={passStatus}
                 accessoryRight={renderIcon}
                 secureTextEntry={secureTextEntry}
-                onChangeText={nextValue => setPass2(nextValue)}
+                onChangeText={setPass2}
             />
             <StyledRowContainer>
-            <Text>Register as seller?  </Text>
-            <Switch
-                trackColor={{ false: EColors.greyCA, true: EColors.lightred }}
-                thumbColor={isEnabled ? EColors.red : EColors.greyAA}
-                ios_backgroundColor="#3e3e3e"
-                onValueChange={toggleSwitch}
-                value={isEnabled}
-            /></StyledRowContainer>
+                <Text>Register as seller?  </Text>
+                <Switch
+                    trackColor={{ false: EColors.greyCA, true: EColors.lightred }}
+                    thumbColor={isEnabled ? EColors.red : EColors.greyAA}
+                    ios_backgroundColor={EColors.grey3e}
+                    onValueChange={toggleSwitch}
+                    value={isEnabled}
+                /></StyledRowContainer>
 
             <Button color={EColors.red} title="Sign up" onPress={handleRegister} />
             <StyledRowContainer>
-            <Text>Do you have an account?  </Text>
-            <Button color={EColors.red} title="Sign in" onPress={() => navigation.goBack()} />
+                <Text>Do you have an account?  </Text>
+                <Button color={EColors.red} title="Sign in" onPress={handleSignIn} />
             </StyledRowContainer>
         </StyledContainer>
 
