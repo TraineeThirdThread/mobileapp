@@ -1,24 +1,20 @@
-import { Icon, Input } from '@ui-kitten/components';
+import { Icon, Input, InputProps } from '@ui-kitten/components';
 import React, { useMemo, useState } from 'react';
 import { TouchableWithoutFeedback } from 'react-native';
 
-interface ICustomInputProps {
-    placeholder?: string,
-    value?: string, label: string,
-    caption?: string,
-    status?: string,
-    onChangeText?: (arg0: string) => void,
-    isPassword?: boolean,
+
+interface ICustomInputProps extends InputProps {
+    isPassword?:boolean
 }
 
 export function CustomInput(customProps: ICustomInputProps) {
-    const { placeholder, value, label, caption, status, onChangeText, isPassword } = customProps;
+    const { isPassword, ...restProps } = customProps;
 
     const [secureTextEntry, setSecureTextEntry] = useState(true);
 
     const onPress = () => {
-        setSecureTextEntry(!secureTextEntry)
-    }
+        setSecureTextEntry(!secureTextEntry);
+    };
 
     const iconComponent = (props): React.ReactElement => (
         <TouchableWithoutFeedback onPress={onPress}>
@@ -32,20 +28,11 @@ export function CustomInput(customProps: ICustomInputProps) {
 
     return (isPassword ?
         (<Input
-            placeholder={placeholder}
-            value={value}
-            label={label}
-            caption={caption}
-            status={status ? status : 'basic'}
+            {...restProps}
             accessoryRight={renderIcon}
             secureTextEntry={secureTextEntry}
-            onChangeText={onChangeText} />) :
+            />) :
         (<Input
-            placeholder={placeholder}
-            value={value}
-            label={label}
-            caption={caption}
-            status={status}
-            onChangeText={onChangeText} />)
+            {...restProps} />)
     );
 }
