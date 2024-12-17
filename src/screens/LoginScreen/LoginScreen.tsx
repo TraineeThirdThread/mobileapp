@@ -13,7 +13,6 @@ import useLoginStore from '../../app/stores/useLoginStore';
 
 export function LoginScreen() {
     const navigation = useRootNavigation();
-    const tabNavigation = useMainTabsNavigation();
 
     const { login, pass, setLogin, setPass} = useLoginStore();
     const { setId } = useUserStore();
@@ -25,7 +24,7 @@ export function LoginScreen() {
     const handleLogin = async () => {
         const data = await loginHandler(login, pass);
         setId(data.id);
-        data.id ? tabNavigation.popTo(EScreens.hometabs, {screen:EScreens.homescreen}) : null;
+        data.id ? navigation.popTo(EScreens.hometabs, {screen:EScreens.homescreen}) : null;
     };
 
 
