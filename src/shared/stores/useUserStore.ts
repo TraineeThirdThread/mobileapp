@@ -1,6 +1,27 @@
 import { create } from 'zustand';
 
-const useUserStore = create((set) => ({
+interface IUserState {
+    id: string,
+    email: string,
+    username: string,
+    role: string,
+    firstname: string,
+    lastname: string,
+    phoneNumber: string,
+    photoUrl: string,
+    deliveryAddress: string,
+    setId: (id: string) => void,
+    setEmail: (email: string) => void,
+    setUsername: (username: string) => void,
+    setRole: (role: string) => void,
+    setFirstname: (firstname: string) => void,
+    setLastname: (lastname: string) => void,
+    setPhoneNumber: (phoneNumber: string) => void,
+    setPhotoUrl: (photoUrl: string) => void,
+    setDeliveryAddress: (deliveryAddress: string) => void,
+}
+
+const useUserStore = create<IUserState>((set) => ({
     id: '',
     email: '',
     username: '',

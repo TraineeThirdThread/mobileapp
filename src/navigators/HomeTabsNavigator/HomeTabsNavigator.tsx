@@ -1,7 +1,7 @@
-import React from "react";
-import { HomeScreen } from "../../screens/HomeScreen/HomeScreen";
-import { ProfileScreen } from "../../screens/ProfileScreen/ProfileScreen";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import React from 'react';
+import { HomeScreen } from '../../screens/HomeScreen/HomeScreen';
+import { ProfileScreen } from '../../screens/ProfileScreen/ProfileScreen';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 export function HomeTabsNavigator() {
     const Tab = createBottomTabNavigator();

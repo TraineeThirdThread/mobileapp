@@ -1,9 +1,9 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import { Button, View } from 'react-native';
-import useLoginStore from '../../shared/stores/useLoginStore';
 import { EColors } from '../../shared/ENUMS/colors';
 import useUserStore from '../../shared/stores/useUserStore';
 import { Text } from '@ui-kitten/components';
+import useLoginStore from '../../app/stores/useLoginStore';
 
 export function ProfileScreen() {
     const { setIsSignedIn } = useLoginStore();

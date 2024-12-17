@@ -1,5 +1,5 @@
 
-export async function loginHandler(login, pass) {
+export async function loginHandler(login: string, pass: string) {
     try {
         const res = await fetch('http://192.168.0.107:3000/auth/login', {
             method: 'POST',
