@@ -1,16 +1,19 @@
 import React from 'react';
 import { Button, View } from 'react-native';
 import { EColors } from '../../shared/ENUMS/colors';
-import useLoginStore from '../../app/stores/useLoginStore';
+import { useRootNavigation } from '../../shared/hooks/useTypedNavigation';
+import { EScreens } from '../../shared/ENUMS/screens';
 
 export function HomeScreen() {
-    const { setIsSignedIn } = useLoginStore();
+    const navigation = useRootNavigation();
+
     const handleSignOut = () => {
-        setIsSignedIn(false);
+        navigation.popTo(EScreens.login);
     };
+
     return (
         <View>
-            <Button color={EColors.red} title="Sign out" onPress={handleSignOut} />
+            <Button color={EColors.black} title="Sign out" onPress={handleSignOut} />
         </View>
 
     );

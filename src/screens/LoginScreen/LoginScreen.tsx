@@ -5,7 +5,7 @@ import { StyledContainer, StyledRowContainer } from './loginScreen.styles';
 import { EColors } from '../../shared/ENUMS/colors';
 import { EScreens } from '../../shared/ENUMS/screens';
 import { AppIcon } from '../../shared/ui/icons';
-import { useRootNavigation } from '../../shared/hooks/useTypedNavigation';
+import { useMainTabsNavigation, useRootNavigation } from '../../shared/hooks/useTypedNavigation';
 import { CustomInput } from '../../shared/components/CustomInput/CustomInput';
 import { loginHandler } from '../../shared/utils/loginHandler';
 import useUserStore from '../../shared/stores/useUserStore';
@@ -13,8 +13,9 @@ import useLoginStore from '../../app/stores/useLoginStore';
 
 export function LoginScreen() {
     const navigation = useRootNavigation();
+    const tabNavigation = useMainTabsNavigation();
 
-    const { login, pass, setLogin, setPass, setIsSignedIn } = useLoginStore();
+    const { login, pass, setLogin, setPass} = useLoginStore();
     const { setId } = useUserStore();
 
     const handleSignUp = () => {
@@ -24,7 +25,7 @@ export function LoginScreen() {
     const handleLogin = async () => {
         const data = await loginHandler(login, pass);
         setId(data.id);
-        data.id ? setIsSignedIn(true) : null;
+        data.id ? tabNavigation.popTo(EScreens.hometabs, {screen:EScreens.homescreen}) : null;
     };
 
 

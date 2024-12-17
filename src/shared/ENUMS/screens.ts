@@ -1,5 +1,8 @@
 export enum EScreens {
     login = 'login',
     register = 'register',
-    home = 'home'
+    hometabs = 'hometabs',
+    homescreen = 'Home',
+    profile = 'Profile',
+    editprofile = 'Edit Profile'
 }
