@@ -27,7 +27,7 @@ export function RootStack() {
             <Stack.Screen
                 name={EScreens.hometabs}
                 component={HomeTabsNavigator}
-                options={{headerShown:false}}
+                options={{ headerShown: false }}
             />
             <Stack.Screen
                 name={EScreens.editprofile}
