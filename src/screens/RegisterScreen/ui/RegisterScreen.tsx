@@ -2,14 +2,15 @@ import React, { useState } from 'react';
 import { Input, Text } from '@ui-kitten/components';
 import { Button, Switch } from 'react-native';
 import { StyledContainer, StyledRowContainer } from './RegisterScreen.styles';
-import { EColors } from '../../shared/ENUMS/colors';
-import { AppIcon } from '../../shared/ui/icons';
-import { useRootNavigation } from '../../shared/hooks/useTypedNavigation';
-import { CustomInput } from '../../shared/components/CustomInput/CustomInput';
-import { registerFormValidation } from '../../shared/utils/registerFormValidation';
-import { EScreens } from '../../shared/ENUMS/screens';
-import { registerHandler } from './api/registerHandler';
-import useRegisterStore from '../../app/stores/useRegisterStore';
+import { EColors } from '../../../shared/ENUMS/colors';
+import { AppIcon } from '../../../shared/ui/icons';
+import { useRootNavigation } from '../../../shared/hooks/useTypedNavigation';
+import { CustomInput } from '../../../shared/components/CustomInput/CustomInput';
+import { registerFormValidation } from '../../../shared/utils/registerFormValidation';
+import { EScreens } from '../../../shared/ENUMS/screens';
+import { registerHandler } from '../api/registerHandler';
+import useRegisterStore from '../../../app/providers/StoreProvider/useRegisterStore';
+import { EPlaceholders } from '../../../shared/ENUMS/placeholders';
 
 export function RegisterScreen() {
     const navigation = useRootNavigation();
@@ -37,7 +38,7 @@ export function RegisterScreen() {
             <AppIcon />
             <Text category="h3">Sign up</Text>
             <Input
-                placeholder="Put your login"
+                placeholder={EPlaceholders.login}
                 value={login}
                 status={status.loginStatus}
                 caption={status.loginCaption}
@@ -45,7 +46,7 @@ export function RegisterScreen() {
                 label="Login"
             />
             <Input
-                placeholder="Put your E-Mail"
+                placeholder={EPlaceholders.email}
                 value={email}
                 status={status.emailStatus}
                 caption={status.emailCaption}
@@ -53,7 +54,7 @@ export function RegisterScreen() {
                 label="E-Mail"
             />
             <CustomInput
-                placeholder="Put your password"
+                placeholder={EPlaceholders.password}
                 value={pass}
                 label="Password"
                 caption={status.passCaption}
@@ -62,7 +63,7 @@ export function RegisterScreen() {
                 isPassword={true}
             />
             <CustomInput
-                placeholder="Put your password again"
+                placeholder={EPlaceholders.password}
                 value={pass2}
                 label="Password"
                 caption={status.passCaption}
@@ -82,7 +83,7 @@ export function RegisterScreen() {
 
             <Button color={EColors.red} title="Sign up" onPress={handleRegister} />
             <StyledRowContainer>
-                <Text>Do you have an account?  </Text>
+                <Text>Do you have an account? </Text>
                 <Button color={EColors.red} title="Sign in" onPress={handleSignIn} />
             </StyledRowContainer>
         </StyledContainer>

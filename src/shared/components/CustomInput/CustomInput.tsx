@@ -1,14 +1,17 @@
+
 import { Icon, IconProps, Input, InputProps } from '@ui-kitten/components';
 import React, { useMemo, useState } from 'react';
 import { TouchableWithoutFeedback } from 'react-native';
+import { DeliveryInput } from '../DeliveryInput/DeliveryInput';
 
 
 interface ICustomInputProps extends InputProps {
-    isPassword?:boolean
+    isPassword?: boolean,
+    isDeliveryAdresses?: boolean,
 }
 
 export function CustomInput(customProps: ICustomInputProps) {
-    const { isPassword, ...restProps } = customProps;
+    const { isPassword, isDeliveryAdresses, ...restProps } = customProps;
 
     const [secureTextEntry, setSecureTextEntry] = useState(true);
 
@@ -26,13 +29,19 @@ export function CustomInput(customProps: ICustomInputProps) {
     );
     const renderIcon = useMemo(() => iconComponent, [secureTextEntry]);
 
-    return (isPassword ?
-        (<Input
+    if (isPassword) {
+        return <Input
             {...restProps}
             accessoryRight={renderIcon}
             secureTextEntry={secureTextEntry}
-            />) :
-        (<Input
-            {...restProps} />)
+        />;
+    }
+
+    if (isDeliveryAdresses) {
+        return <DeliveryInput/>;
+    }
+
+    return (<Input
+        {...restProps} />
     );
 }

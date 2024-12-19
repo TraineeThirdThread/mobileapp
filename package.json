@@ -18,6 +18,7 @@
     "@react-navigation/stack": "^7.0.18",
     "@ui-kitten/components": "^5.3.1",
     "@ui-kitten/eva-icons": "^5.3.1",
+    "axios": "^1.7.9",
     "react": "18.3.1",
     "react-native": "0.76.3",
     "react-native-bootsplash": "^6.3.2",

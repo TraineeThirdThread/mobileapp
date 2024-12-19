@@ -1,10 +1,11 @@
+import axios from 'axios';
+
 export async function registerHandler(props) {
-    return await fetch('http://192.168.0.107:3000/users', {
-                method: 'POST',
-                body: JSON.stringify(props),
-                headers: {
-                    'Content-type': 'application/json; charset=UTF-8',
-                },
-            }).then(async (res) => await res.json())
-            .catch(err => console.log(err));
+
+    return await axios.post('http://192.168.0.107:3000/users', props)
+        .then(function (res) {
+            return res.data;
+        }).catch(function (error) {
+            console.log(error);
+        });
 };

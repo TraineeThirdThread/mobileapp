@@ -1,10 +1,10 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { EScreens } from '../shared/ENUMS/screens';
-import { LoginScreen } from '../screens/LoginScreen/LoginScreen';
-import { RegisterScreen } from '../screens/RegisterScreen/RegisterScreen';
 import { HomeTabsNavigator } from '../navigators/HomeTabsNavigator/HomeTabsNavigator';
-import { EditProfileScreen } from '../screens/EditProfileScreen/EditProfileScreen';
+import { EditProfileScreen } from '../screens/EditProfileScreen';
+import { LoginScreen } from '../screens/LoginScreen';
+import { RegisterScreen } from '../screens/RegisterScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -27,7 +27,7 @@ export function RootStack() {
             <Stack.Screen
                 name={EScreens.hometabs}
                 component={HomeTabsNavigator}
-                options={{headerShown:false}}
+                options={{ headerShown: false }}
             />
             <Stack.Screen
                 name={EScreens.editprofile}
