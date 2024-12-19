@@ -1,7 +1,8 @@
 import React from 'react';
 import { Input } from '@ui-kitten/components';
 import { Button, FlatList } from 'react-native';
-import useUserStore from '../../stores/useUserStore';
+import useUserStore from '../../providers/StoreProviders/useUserStore';
+import { EPlaceholders } from '../../ENUMS/placeholders';
 
 
 export function DeliveryInput() {
@@ -23,7 +24,7 @@ export function DeliveryInput() {
             scrollEnabled={false}
             renderItem={({ item, index }) => <Input
                 label={'Delivery address'}
-                placeholder={'Delivery address'}
+                placeholder={EPlaceholders.deliveryaddress}
                 value={item}
                 onChangeText={(nextitem) => handleChangeText(nextitem, index)}
             />}

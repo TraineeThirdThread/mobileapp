@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react';
 import { Button, FlatList, ScrollView, View } from 'react-native';
-import { EColors } from '../../shared/ENUMS/colors';
-import useUserStore from '../../shared/stores/useUserStore';
+import { EColors } from '../../../shared/ENUMS/colors';
+import useUserStore from '../../../shared/providers/StoreProviders/useUserStore';
 import { StyledProfileImage, StyledProfileText, StyledProfileView } from './profileScreen.styles';
 import { Text } from '@ui-kitten/components/ui';
-import { getUserData } from '../../shared/utils/getUserData';
-import { useRootNavigation } from '../../shared/hooks/useTypedNavigation';
-import { EScreens } from '../../shared/ENUMS/screens';
-import { getAddresses } from '../../shared/utils/getAddresses';
-import useAvailibleAddressesStore from '../../shared/stores/useAvailibleAddressesStore';
+import { getUserData } from '../../../shared/utils/getUserData';
+import { useRootNavigation } from '../../../shared/hooks/useTypedNavigation';
+import { EScreens } from '../../../shared/ENUMS/screens';
+import { getAddresses } from '../../../shared/utils/getAddresses';
+import useAvailibleAddressesStore from '../../../shared/providers/StoreProviders/useAvailibleAddressesStore';
 
 export function ProfileScreen() {
     const navigation = useRootNavigation();
@@ -36,10 +36,16 @@ export function ProfileScreen() {
         navigation.popTo(EScreens.login);
     };
 
+    const renderItem = ({ item }) => {
+        return (
+            <StyledProfileText>{item}</StyledProfileText>
+        );
+    };
+
     return (
         <ScrollView>
             <StyledProfileView>
-                <StyledProfileImage src={photoUrl} source={require('../../shared/assets/user.png')} />
+                <StyledProfileImage src={photoUrl} source={require('../../../shared/assets/user.png')} />
                 <Text category={'h3'}>{username}</Text>
             </StyledProfileView>
             <StyledProfileText>Email: {email}</StyledProfileText>
@@ -50,7 +56,7 @@ export function ProfileScreen() {
                 <FlatList
                     scrollEnabled={false}
                     data={deliveryAddress}
-                    renderItem={({ item }) => <StyledProfileText>{item}</StyledProfileText>} />
+                    renderItem={renderItem} />
             </View>
             <Button color={EColors.black} title="Sign out" onPress={handleSignOut} />
         </ScrollView>

@@ -2,14 +2,15 @@ import React from 'react';
 import { Input, Text } from '@ui-kitten/components';
 import { Button } from 'react-native';
 import { StyledContainer, StyledRowContainer } from './loginScreen.styles';
-import { EColors } from '../../shared/ENUMS/colors';
-import { EScreens } from '../../shared/ENUMS/screens';
-import { AppIcon } from '../../shared/ui/icons';
-import { useRootNavigation } from '../../shared/hooks/useTypedNavigation';
-import { CustomInput } from '../../shared/components/CustomInput/CustomInput';
-import { loginHandler } from './api/loginHandler';
-import useUserStore from '../../shared/stores/useUserStore';
-import useLoginStore from '../../app/stores/useLoginStore';
+import { EColors } from '../../../shared/ENUMS/colors';
+import { EScreens } from '../../../shared/ENUMS/screens';
+import { AppIcon } from '../../../shared/ui/icons';
+import { useRootNavigation } from '../../../shared/hooks/useTypedNavigation';
+import { CustomInput } from '../../../shared/components/CustomInput/CustomInput';
+import { loginHandler } from '../api/loginHandler';
+import useUserStore from '../../../shared/providers/StoreProviders/useUserStore';
+import useLoginStore from '../../../app/providers/StoreProvider/useLoginStore';
+import { EPlaceholders } from '../../../shared/ENUMS/placeholders';
 
 export function LoginScreen() {
     const navigation = useRootNavigation();
@@ -33,13 +34,13 @@ export function LoginScreen() {
             <AppIcon />
             <Text category="h3">Sign in</Text>
             <Input
-                placeholder="Put your login or E-Mail"
+                placeholder={EPlaceholders.loginoremail}
                 value={login}
                 onChangeText={setLogin}
                 label="Login or E-Mail"
             />
             <CustomInput
-                placeholder="Put your password"
+                placeholder={EPlaceholders.password}
                 value={pass}
                 label="Password"
                 onChangeText={setPass}

@@ -1,15 +1,16 @@
+import axios from "axios";
+
 export async function getAddresses() {
     const set = new Set();
-    let availibleAddresses:string[] = [];
-    return await fetch(`http://192.168.0.107:3000/users`)
-        .then(async (res) => await res.json())
-        .then(async (data) => await data.filter((user) => {
+    let availibleAddresses: string[] = [];
+    return await axios.get(`http://192.168.0.107:3000/users`)
+        .then((res) => res.data.filter((user) => {
             if ((user.role === 'seller') && user.deliveryAddress) {
                 return user;
             }
         }).map((user) => user.deliveryAddress).join(';').split(';'))
-        .then(async (address) => {
-            await address.forEach(item => set.add(item));
+        .then((address) => {
+            address.forEach(item => set.add(item));
             set.forEach((item) => {
                 availibleAddresses.push(item);
             });
