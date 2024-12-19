@@ -5,9 +5,9 @@ import { StyledContainer, StyledRowContainer } from './loginScreen.styles';
 import { EColors } from '../../shared/ENUMS/colors';
 import { EScreens } from '../../shared/ENUMS/screens';
 import { AppIcon } from '../../shared/ui/icons';
-import { useMainTabsNavigation, useRootNavigation } from '../../shared/hooks/useTypedNavigation';
+import { useRootNavigation } from '../../shared/hooks/useTypedNavigation';
 import { CustomInput } from '../../shared/components/CustomInput/CustomInput';
-import { loginHandler } from '../../shared/utils/loginHandler';
+import { loginHandler } from './api/loginHandler';
 import useUserStore from '../../shared/stores/useUserStore';
 import useLoginStore from '../../app/stores/useLoginStore';
 

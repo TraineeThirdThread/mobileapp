@@ -8,7 +8,7 @@ import { useRootNavigation } from '../../shared/hooks/useTypedNavigation';
 import { CustomInput } from '../../shared/components/CustomInput/CustomInput';
 import { registerFormValidation } from '../../shared/utils/registerFormValidation';
 import { EScreens } from '../../shared/ENUMS/screens';
-import { registerHandler } from '../../shared/utils/registerHandler';
+import { registerHandler } from './api/registerHandler';
 import useRegisterStore from '../../app/stores/useRegisterStore';
 
 export function RegisterScreen() {
