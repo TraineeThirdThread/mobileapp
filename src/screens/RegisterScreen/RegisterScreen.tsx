@@ -3,11 +3,13 @@ import { Input, Text } from '@ui-kitten/components';
 import { Button, Switch } from 'react-native';
 import { StyledContainer, StyledRowContainer } from './RegisterScreen.styles';
 import { EColors } from '../../shared/ENUMS/colors';
-import useRegisterStore from '../../app/stores/useRegisterStore';
 import { AppIcon } from '../../shared/ui/icons';
 import { useRootNavigation } from '../../shared/hooks/useTypedNavigation';
 import { CustomInput } from '../../shared/components/CustomInput/CustomInput';
 import { registerFormValidation } from '../../shared/utils/registerFormValidation';
+import { EScreens } from '../../shared/ENUMS/screens';
+import { registerHandler } from './api/registerHandler';
+import useRegisterStore from '../../app/stores/useRegisterStore';
 
 export function RegisterScreen() {
     const navigation = useRootNavigation();
@@ -16,17 +18,18 @@ export function RegisterScreen() {
     const [isEnabled, setIsEnabled] = useState(false);
     const toggleSwitch = () => setIsEnabled(previousState => !previousState);
 
-    const handleRegister = () => {
+    const handleRegister = async () => {
         //inputs validation
         setStatus(registerFormValidation(login, email, pass, pass2));
         if (status.formIsValid) {
-            console.log({ login, email, pass, role: isEnabled ? 'seller' : 'buyer' });
+            const data = await registerHandler({ email, username: login, password: pass, role: isEnabled ? 'seller' : 'buyer' });
+            await data.id ? handleSignIn() : null;
         }
 
     };
 
     const handleSignIn = () => {
-        navigation.goBack();
+        navigation.popTo(EScreens.login);
     };
 
     return (

@@ -1,10 +1,17 @@
 import { create } from 'zustand';
 
-const useLoginStore = create((set) => ({
+interface ILoginState {
+    login: string;
+    pass: string;
+    setLogin: (login: string) => void;
+    setPass: (pass: string) => void;
+}
+
+const useLoginStore = create<ILoginState>((set) => ({
     login: '',
     pass: '',
-    setLogin: (login: string) => set(({login})),
-    setPass: (pass: string) => set(({pass})),
+    setLogin: (login: string) => set(({ login })),
+    setPass: (pass: string) => set(({ pass })),
 }));
 
 export default useLoginStore;

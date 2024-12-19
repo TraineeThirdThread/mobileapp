@@ -1,4 +1,4 @@
-import { Icon, Input, InputProps } from '@ui-kitten/components';
+import { Icon, IconProps, Input, InputProps } from '@ui-kitten/components';
 import React, { useMemo, useState } from 'react';
 import { TouchableWithoutFeedback } from 'react-native';
 
@@ -16,7 +16,7 @@ export function CustomInput(customProps: ICustomInputProps) {
         setSecureTextEntry(!secureTextEntry);
     };
 
-    const iconComponent = (props): React.ReactElement => (
+    const iconComponent = (props: IconProps): React.ReactElement => (
         <TouchableWithoutFeedback onPress={onPress}>
             <Icon
                 {...props}
