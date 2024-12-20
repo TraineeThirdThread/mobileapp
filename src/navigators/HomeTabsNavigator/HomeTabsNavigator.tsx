@@ -1,11 +1,11 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Button } from 'react-native';
-import { useRootNavigation } from '../../shared/hooks/useTypedNavigation';
-import { EScreens } from '../../shared/ENUMS/screens';
-import { EColors } from '../../shared/ENUMS/colors';
-import { ProfileScreen } from '../../screens/ProfileScreen';
-import { HomeScreen } from '../../screens/HomeScreen';
+import { EScreens } from 'shared/ENUMS/screens';
+import { HomeScreen } from 'screens/HomeScreen';
+import { useRootNavigation } from 'shared/hooks/useTypedNavigation';
+import { ProfileScreen } from 'screens/ProfileScreen';
+import { EColors } from 'shared/ENUMS/colors';
 
 export function HomeTabsNavigator() {
     const Tab = createBottomTabNavigator();

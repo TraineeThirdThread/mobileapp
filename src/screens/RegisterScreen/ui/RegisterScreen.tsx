@@ -2,15 +2,15 @@ import React, { useState } from 'react';
 import { Input, Text } from '@ui-kitten/components';
 import { Button, Switch } from 'react-native';
 import { StyledContainer, StyledRowContainer } from './RegisterScreen.styles';
-import { EColors } from '../../../shared/ENUMS/colors';
-import { AppIcon } from '../../../shared/ui/icons';
-import { useRootNavigation } from '../../../shared/hooks/useTypedNavigation';
-import { CustomInput } from '../../../shared/components/CustomInput/CustomInput';
-import { registerFormValidation } from '../../../shared/utils/registerFormValidation';
-import { EScreens } from '../../../shared/ENUMS/screens';
+import { CustomInput } from 'shared/components/CustomInput/CustomInput';
+import { EColors } from 'shared/ENUMS/colors';
+import { EPlaceholders } from 'shared/ENUMS/placeholders';
+import { EScreens } from 'shared/ENUMS/screens';
+import { useRootNavigation } from 'shared/hooks/useTypedNavigation';
+import { AppIcon } from 'shared/ui/icons';
+import { registerFormValidation } from 'shared/utils/registerFormValidation';
 import { registerHandler } from '../api/registerHandler';
-import useRegisterStore from '../../../app/providers/StoreProvider/useRegisterStore';
-import { EPlaceholders } from '../../../shared/ENUMS/placeholders';
+import useRegisterStore from '../module/useRegisterStore';
 
 export function RegisterScreen() {
     const navigation = useRootNavigation();
@@ -26,7 +26,6 @@ export function RegisterScreen() {
             const data = await registerHandler({ email, username: login, password: pass, role: isEnabled ? 'seller' : 'buyer' });
             await data.id ? handleSignIn() : null;
         }
-
     };
 
     const handleSignIn = () => {

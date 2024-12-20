@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { Autocomplete, AutocompleteItem } from '@ui-kitten/components';
-import useUserStore from '../../providers/StoreProviders/useUserStore';
-import { EPlaceholders } from '../../ENUMS/placeholders';
+import { EPlaceholders } from 'shared/ENUMS/placeholders';
+import useUserStore from 'shared/providers/StoreProviders/useUserStore';
 
 const filter = (item: string, query: string): boolean => item.toLowerCase().includes(query.toLowerCase());
 
@@ -12,12 +12,12 @@ export function AutocompleteInput(props): React.ReactElement {
 
     const onSelect = useCallback((index: number): void => {
         setDeliveryAddress(data[index]);
-    }, [data, inputData]);
+    }, [data]);
 
     const onChangeText = useCallback((query: string): void => {
         setDeliveryAddress(query);
         setData(inputData.filter(item => filter(item, query)));
-    }, []);
+    }, [inputData]);
 
     return (
         <Autocomplete

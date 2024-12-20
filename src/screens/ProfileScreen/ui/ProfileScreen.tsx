@@ -1,20 +1,19 @@
 import React, { useEffect } from 'react';
 import { Button, FlatList, ScrollView, View } from 'react-native';
-import { EColors } from '../../../shared/ENUMS/colors';
-import useUserStore from '../../../shared/providers/StoreProviders/useUserStore';
 import { StyledProfileImage, StyledProfileText, StyledProfileView } from './profileScreen.styles';
 import { Text } from '@ui-kitten/components/ui';
-import { getUserData } from '../../../shared/utils/getUserData';
-import { useRootNavigation } from '../../../shared/hooks/useTypedNavigation';
-import { EScreens } from '../../../shared/ENUMS/screens';
-import { getAddresses } from '../../../shared/utils/getAddresses';
-import useAvailibleAddressesStore from '../../../shared/providers/StoreProviders/useAvailibleAddressesStore';
+import { EColors } from 'shared/ENUMS/colors';
+import { EScreens } from 'shared/ENUMS/screens';
+import { useRootNavigation } from 'shared/hooks/useTypedNavigation';
+import useAvailibleAddressesStore from 'shared/providers/StoreProviders/useAvailibleAddressesStore';
+import useUserStore from 'shared/providers/StoreProviders/useUserStore';
+import { getAddresses } from 'shared/utils/getAddresses';
+import { getUserData } from 'shared/utils/getUserData';
 
 export function ProfileScreen() {
     const navigation = useRootNavigation();
     const { id, email, username, firstname, lastname, phoneNumber, photoUrl, deliveryAddress, setEmail, setUsername, setRole, setFirstname, setLastname, setPhoneNumber, setPhotoUrl, setDeliveryAddress } = useUserStore();
     const { setAvailibleAddresses } = useAvailibleAddressesStore();
-    const { } = useUserStore();
     const deliveryAdresses = getAddresses();
     useEffect(() => {
         async function fetchData() {

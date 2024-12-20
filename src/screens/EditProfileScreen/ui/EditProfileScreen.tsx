@@ -1,15 +1,16 @@
 import React from 'react';
 import { Button, ScrollView } from 'react-native';
 import { Input } from '@ui-kitten/components';
-import { useMainTabsNavigation } from '../../../shared/hooks/useTypedNavigation';
-import useUserStore from '../../../shared/providers/StoreProviders/useUserStore';
-import useAvailibleAddressesStore from '../../../shared/providers/StoreProviders/useAvailibleAddressesStore';
-import { updateUserData } from '../../../shared/utils/updateUserData';
-import { EScreens } from '../../../shared/ENUMS/screens';
-import { EPlaceholders } from '../../../shared/ENUMS/placeholders';
-import { CustomInput } from '../../../shared/components/CustomInput/CustomInput';
-import { AutocompleteInput } from '../../../shared/components/AutocompleteInput/AutocompleteInput';
-import { EColors } from '../../../shared/ENUMS/colors';
+import { AutocompleteInput } from 'shared/components/AutocompleteInput/AutocompleteInput';
+import { CustomInput } from 'shared/components/CustomInput/CustomInput';
+import { EColors } from 'shared/ENUMS/colors';
+import { EPlaceholders } from 'shared/ENUMS/placeholders';
+import { EScreens } from 'shared/ENUMS/screens';
+import { useMainTabsNavigation } from 'shared/hooks/useTypedNavigation';
+import useAvailibleAddressesStore from 'shared/providers/StoreProviders/useAvailibleAddressesStore';
+import useUserStore from 'shared/providers/StoreProviders/useUserStore';
+import { updateUserData } from 'shared/utils/updateUserData';
+
 
 export function EditProfileScreen() {
     const navigation = useMainTabsNavigation();

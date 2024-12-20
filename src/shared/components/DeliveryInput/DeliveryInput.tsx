@@ -1,8 +1,8 @@
 import React from 'react';
 import { Input } from '@ui-kitten/components';
 import { Button, FlatList } from 'react-native';
-import useUserStore from '../../providers/StoreProviders/useUserStore';
-import { EPlaceholders } from '../../ENUMS/placeholders';
+import { EPlaceholders } from 'shared/ENUMS/placeholders';
+import useUserStore from 'shared/providers/StoreProviders/useUserStore';
 
 
 export function DeliveryInput() {
@@ -17,17 +17,19 @@ export function DeliveryInput() {
         setDeliveryAddress([...adr]);
     };
 
+    const renderItem = ({ item, index }) => <Input
+        label={'Delivery address'}
+        placeholder={EPlaceholders.deliveryaddress}
+        value={item}
+        onChangeText={(nextitem) => handleChangeText(nextitem, index)}
+    />;
+
     return (<>
         <FlatList
             data={deliveryAddress}
             extraData={adr}
             scrollEnabled={false}
-            renderItem={({ item, index }) => <Input
-                label={'Delivery address'}
-                placeholder={EPlaceholders.deliveryaddress}
-                value={item}
-                onChangeText={(nextitem) => handleChangeText(nextitem, index)}
-            />}
+            renderItem={renderItem}
         />
         <Button title="Add address" onPress={handleAddInput} />
     </>
