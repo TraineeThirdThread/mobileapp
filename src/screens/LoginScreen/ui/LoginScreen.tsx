@@ -2,19 +2,20 @@ import React from 'react';
 import { Input, Text } from '@ui-kitten/components';
 import { Button } from 'react-native';
 import { StyledContainer, StyledRowContainer } from './loginScreen.styles';
-import { EColors } from '../../shared/ENUMS/colors';
-import { EScreens } from '../../shared/ENUMS/screens';
-import { AppIcon } from '../../shared/ui/icons';
-import { useRootNavigation } from '../../shared/hooks/useTypedNavigation';
-import { CustomInput } from '../../shared/components/CustomInput/CustomInput';
-import { loginHandler } from './api/loginHandler';
-import useUserStore from '../../shared/stores/useUserStore';
-import useLoginStore from '../../app/stores/useLoginStore';
+import { CustomInput } from 'shared/components/CustomInput/CustomInput';
+import { EColors } from 'shared/ENUMS/colors';
+import { EPlaceholders } from 'shared/ENUMS/placeholders';
+import { EScreens } from 'shared/ENUMS/screens';
+import { useRootNavigation } from 'shared/hooks/useTypedNavigation';
+import useUserStore from 'shared/providers/StoreProviders/useUserStore';
+import { AppIcon } from 'shared/ui/icons';
+import { loginHandler } from '../api/loginHandler';
+import useLoginStore from '../module/useLoginStore';
 
 export function LoginScreen() {
     const navigation = useRootNavigation();
 
-    const { login, pass, setLogin, setPass} = useLoginStore();
+    const { login, pass, setLogin, setPass } = useLoginStore();
     const { setId } = useUserStore();
 
     const handleSignUp = () => {
@@ -24,7 +25,9 @@ export function LoginScreen() {
     const handleLogin = async () => {
         const data = await loginHandler(login, pass);
         setId(data.id);
-        data.id ? navigation.popTo(EScreens.hometabs, {screen:EScreens.homescreen}) : null;
+        if (data.id) {
+            navigation.popTo(EScreens.hometabs, { screen: EScreens.homescreen });
+        }
     };
 
 
@@ -33,13 +36,13 @@ export function LoginScreen() {
             <AppIcon />
             <Text category="h3">Sign in</Text>
             <Input
-                placeholder="Put your login or E-Mail"
+                placeholder={EPlaceholders.loginoremail}
                 value={login}
                 onChangeText={setLogin}
                 label="Login or E-Mail"
             />
             <CustomInput
-                placeholder="Put your password"
+                placeholder={EPlaceholders.password}
                 value={pass}
                 label="Password"
                 onChangeText={setPass}

@@ -9,7 +9,7 @@ interface IUserState {
     lastname: string,
     phoneNumber: string,
     photoUrl: string,
-    deliveryAddress: string,
+    deliveryAddress: string[],
     setId: (id: string) => void,
     setEmail: (email: string) => void,
     setUsername: (username: string) => void,
@@ -18,7 +18,7 @@ interface IUserState {
     setLastname: (lastname: string) => void,
     setPhoneNumber: (phoneNumber: string) => void,
     setPhotoUrl: (photoUrl: string) => void,
-    setDeliveryAddress: (deliveryAddress: string) => void,
+    setDeliveryAddress: (deliveryAddress: string[]) => void,
 }
 
 const useUserStore = create<IUserState>((set) => ({
@@ -30,16 +30,16 @@ const useUserStore = create<IUserState>((set) => ({
     lastname: '',
     phoneNumber: '',
     photoUrl: '',
-    deliveryAddress: '',
+    deliveryAddress: [''],
     setId: (id: string) => set(({ id })),
-    setEmail: (email: string) => set(({email})),
-    setUsername: (username: string) => set(({username})),
-    setRole: (role: string) => set(({role})),
-    setFirstname: (firstname: string) => set(({firstname})),
-    setLastname: (lastname: string) => set(({lastname})),
-    setPhoneNumber: (phoneNumber: string) => set(({phoneNumber})),
-    setPhotoUrl: (photoUrl: string) => set(({photoUrl})),
-    setDeliveryAddress: (deliveryAddress: string) => set(({deliveryAddress})),
+    setEmail: (email: string) => set(({ email })),
+    setUsername: (username: string) => set(({ username })),
+    setRole: (role: string) => set(({ role })),
+    setFirstname: (firstname: string) => set(({ firstname })),
+    setLastname: (lastname: string) => set(({ lastname })),
+    setPhoneNumber: (phoneNumber: string) => set(({ phoneNumber })),
+    setPhotoUrl: (photoUrl: string) => set(({ photoUrl })),
+    setDeliveryAddress: (deliveryAddress: string[]) => set(({ deliveryAddress })),
 }));
 
 export default useUserStore;
